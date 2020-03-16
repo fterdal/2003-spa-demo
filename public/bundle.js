@@ -81,10 +81,32 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./client/utils.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./client/main.js");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./client/loadMonsters.js":
+/*!********************************!*\
+  !*** ./client/loadMonsters.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const loadMonsters = async () => {\n  const response = await window.fetch(\"/api/monsters\");\n  const monsters = await response.json();\n  console.log(\"monsters\", monsters);\n  return monsters;\n};\n\nmodule.exports = loadMonsters;\n\n\n//# sourceURL=webpack:///./client/loadMonsters.js?");
+
+/***/ }),
+
+/***/ "./client/main.js":
+/*!************************!*\
+  !*** ./client/main.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const loadMonsters = __webpack_require__(/*! ./loadMonsters */ \"./client/loadMonsters.js\");\nconst { formatDollars } = __webpack_require__(/*! ./utils */ \"./client/utils.js\");\n\nconst monsterContainer = document.getElementById(\"monster-container\");\n\nasync function renderMonsters() {\n  const monsters = await loadMonsters();\n\n  monsterContainer.innerHTML = \"\";\n\n  monsters.forEach(monster => {\n    const monsterBox = document.createElement(\"DIV\");\n    monsterBox.classList.add(\"monster-box\");\n    if (monster.inCart) {\n      monsterBox.classList.add(\"in-cart\");\n    }\n    monsterBox.innerHTML = `\n      <h2>${monster.name}</h2>\n      <img src=\"https://robohash.org/${monster.name}?set=set2\">\n      <div>${formatDollars(monster.priceInCents)} / hour</div>\n    `;\n    monsterContainer.appendChild(monsterBox);\n  });\n}\n\nrenderMonsters();\n\n\n//# sourceURL=webpack:///./client/main.js?");
+
+/***/ }),
 
 /***/ "./client/utils.js":
 /*!*************************!*\

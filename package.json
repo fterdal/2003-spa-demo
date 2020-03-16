@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server",
+    "build-watch": "webpack -w"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "morgan": "^1.9.1",
+    "nodemon": "^2.0.2",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11"
   }

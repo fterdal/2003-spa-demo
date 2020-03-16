@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const createMonster = async newMonster => {\n  const { name, priceInCents } = newMonster;\n  const response = await window.fetch(\"/api/monsters\", {\n    method: \"POST\",\n    headers: {\n      'Content-Type': 'application/json'\n    },\n    body: JSON.stringify({ name, priceInCents })\n  });\n  console.log(\"RESPONSE AFTER POST\", response)\n};\n\nmodule.exports = createMonster;\n\n\n//# sourceURL=webpack:///./client/createMonster.js?");
+eval("const createMonster = async newMonster => {\n\n};\n\nmodule.exports = createMonster;\n\n\n//# sourceURL=webpack:///./client/createMonster.js?");
 
 /***/ }),
 
@@ -104,7 +104,7 @@ eval("const createMonster = async newMonster => {\n  const { name, priceInCents 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const loadMonsters = async () => {\n  const response = await window.fetch(\"/api/monsters\");\n  const monsters = await response.json();\n  console.log(\"MONSTERS AFTER GET\", monsters);\n  return monsters;\n};\n\nmodule.exports = loadMonsters;\n\n\n//# sourceURL=webpack:///./client/loadMonsters.js?");
+eval("const loadMonsters = async () => {\n\n};\n\nmodule.exports = loadMonsters;\n\n\n//# sourceURL=webpack:///./client/loadMonsters.js?");
 
 /***/ }),
 

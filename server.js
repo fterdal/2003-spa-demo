@@ -1,4 +1,5 @@
-const express = require("express");
+const express = require("express"); // Valid CommonJS
+// import express from "express"; // Not valid in Node
 const morgan = require("morgan");
 
 const app = express();

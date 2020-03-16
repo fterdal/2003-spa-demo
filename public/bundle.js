@@ -90,10 +90,11 @@
 /*!*********************************!*\
   !*** ./client/createMonster.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("const createMonster = async newMonster => {\n\n};\n\nmodule.exports = createMonster;\n\n\n//# sourceURL=webpack:///./client/createMonster.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _renderMonsters__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderMonsters */ \"./client/renderMonsters.js\");\n// const loadMonsters = require(\"./loadMonsters\");\n\n\nconst createMonster = async newMonster => {\n  const response = await window.fetch(\"/api/monsters\", {\n    method: \"POST\",\n    headers: {\n      \"Content-Type\": \"application/json\"\n    },\n    body: JSON.stringify(newMonster) // Serializing newMonster\n  });\n  console.log(\"response:\", response);\n  await Object(_renderMonsters__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (createMonster);\n\n\n//# sourceURL=webpack:///./client/createMonster.js?");
 
 /***/ }),
 
@@ -101,10 +102,11 @@ eval("const createMonster = async newMonster => {\n\n};\n\nmodule.exports = crea
 /*!********************************!*\
   !*** ./client/loadMonsters.js ***!
   \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("const loadMonsters = async () => {\n\n};\n\nmodule.exports = loadMonsters;\n\n\n//# sourceURL=webpack:///./client/loadMonsters.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// const axios = require(\"axios\");\n\nconst loadMonsters = async () => {\n  const response = await window.fetch(\"/api/monsters\");\n  const monsters = await response.json();\n  // console.log(\"response\", response);\n  console.log(\"monsters\", monsters);\n  return monsters;\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (loadMonsters);\n\n\n//# sourceURL=webpack:///./client/loadMonsters.js?");
 
 /***/ }),
 
@@ -112,10 +114,23 @@ eval("const loadMonsters = async () => {\n\n};\n\nmodule.exports = loadMonsters;
 /*!************************!*\
   !*** ./client/main.js ***!
   \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("const loadMonsters = __webpack_require__(/*! ./loadMonsters */ \"./client/loadMonsters.js\");\nconst createMonster = __webpack_require__(/*! ./createMonster */ \"./client/createMonster.js\");\nconst { formatDollars } = __webpack_require__(/*! ./utils */ \"./client/utils.js\");\n\nconst monsterContainer = document.getElementById(\"monster-container\");\nconst refreshMonstersBtn = document.getElementById(\"refresh-monsters\");\nconst createMonsterForm = document.getElementById(\"new-monster-form\");\n\nasync function renderMonsters() {\n  const monsters = await loadMonsters();\n\n  monsterContainer.innerHTML = \"\";\n  monsters.forEach(monster => {\n    const monsterBox = document.createElement(\"DIV\");\n    monsterBox.classList.add(\"monster-box\");\n    monsterBox.innerHTML = `\n    <h2>${monster.name}</h2>\n    <img src=\"https://robohash.org/${monster.name}?set=set2\">\n    <div>${formatDollars(monster.priceInCents)} / hour</div>\n    `;\n    monsterContainer.appendChild(monsterBox);\n  });\n}\n\nasync function handleFormSubmit(event) {\n  event.preventDefault();\n  const name = event.target.querySelector('input[name=\"name\"]').value;\n  const priceInCents = event.target.querySelector('input[name=\"price\"]').value;\n  await createMonster({ name, priceInCents });\n}\n\nrefreshMonstersBtn.onclick = renderMonsters;\ncreateMonsterForm.onsubmit = handleFormSubmit;\n\nrenderMonsters();\n\n\n//# sourceURL=webpack:///./client/main.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _createMonster__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createMonster */ \"./client/createMonster.js\");\n/* harmony import */ var _renderMonsters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderMonsters */ \"./client/renderMonsters.js\");\n\n\n\nconst refreshMonstersBtn = document.getElementById(\"refresh-monsters\");\nconst createMonsterForm = document.getElementById(\"new-monster-form\");\n\nObject(_renderMonsters__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\nasync function handleFormSubmit(event) {\n  event.preventDefault();\n  const name = event.target.querySelector('input[name=\"name\"]').value;\n  const priceInCents = event.target.querySelector('input[name=\"price\"]').value;\n  await Object(_createMonster__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({ name, priceInCents });\n}\n\nrefreshMonstersBtn.onclick = _renderMonsters__WEBPACK_IMPORTED_MODULE_1__[\"default\"];\ncreateMonsterForm.onsubmit = handleFormSubmit;\n\n\n//# sourceURL=webpack:///./client/main.js?");
+
+/***/ }),
+
+/***/ "./client/renderMonsters.js":
+/*!**********************************!*\
+  !*** ./client/renderMonsters.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _loadMonsters__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./loadMonsters */ \"./client/loadMonsters.js\");\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ \"./client/utils.js\");\n\n\n\nconsole.log(_utils__WEBPACK_IMPORTED_MODULE_1__[\"default\"].majorGreeting())\n\nconst monsterContainer = document.getElementById(\"monster-container\");\n\nasync function renderMonsters() {\n  const monsters = await Object(_loadMonsters__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n  monsterContainer.innerHTML = \"\";\n  monsters.forEach(monster => {\n    const monsterBox = document.createElement(\"DIV\");\n    monsterBox.classList.add(\"monster-box\");\n    monsterBox.innerHTML = `\n    <h2>${monster.name}</h2>\n    <img src=\"https://robohash.org/${monster.name}?set=set2\">\n    <div>${Object(_utils__WEBPACK_IMPORTED_MODULE_1__[\"formatDollars\"])(monster.priceInCents)} / hour</div>\n    `;\n    monsterContainer.appendChild(monsterBox);\n  });\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (renderMonsters);\n\n\n//# sourceURL=webpack:///./client/renderMonsters.js?");
 
 /***/ }),
 
@@ -123,10 +138,11 @@ eval("const loadMonsters = __webpack_require__(/*! ./loadMonsters */ \"./client/
 /*!*************************!*\
   !*** ./client/utils.js ***!
   \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: formatDollars, sayHello, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("const formatDollars = cents => {\n  return (cents / 100).toLocaleString(\"en-US\", {\n    style: \"currency\",\n    currency: \"USD\"\n  });\n};\n\nmodule.exports = {\n  formatDollars\n}\n\n\n//# sourceURL=webpack:///./client/utils.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"formatDollars\", function() { return formatDollars; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"sayHello\", function() { return sayHello; });\nconst formatDollars = cents => {\n  return (cents / 100).toLocaleString(\"en-US\", {\n    style: \"currency\",\n    currency: \"USD\"\n  });\n};\n\nconst sayHello = () => {\n  console.log(\"HELLO!\")\n}\n\nfunction majorGreeting() {\n  console.log(\"HELLO from majorGreeting!\")\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (majorGreeting);\n\n\n//# sourceURL=webpack:///./client/utils.js?");
 
 /***/ })
 

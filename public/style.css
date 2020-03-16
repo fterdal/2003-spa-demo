@@ -32,6 +32,17 @@ h1 {
   max-height: 100px;
 }
 
-.in-cart {
+#controls {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#refresh-monsters {
+  display: flex;
+  justify-content: center;
+}
+
+#refresh-monsters button {
+  font-size: large;
   background-color: lightgreen;
 }

@@ -1,0 +1,37 @@
+* {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+#monster-container {
+  border: 1px solid black;
+  background-color: bisque;
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.monster-box {
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.monster-box img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.in-cart {
+  background-color: lightgreen;
+}

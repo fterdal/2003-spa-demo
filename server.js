@@ -5,6 +5,7 @@ const app = express();
 app.use(morgan("dev"));
 
 app.use(express.static("public"));
+app.use(express.json());
 
 const monsters = [
   { id: 1, name: "Maurice", priceInCents: 7999, age: 823, inCart: false },
@@ -20,6 +21,7 @@ app.get("/api/monsters", (req, res, next) => {
 
 // POST a new monster
 app.post("/api/monsters", (req, res, next) => {
+  console.log(req.body)
   const { name, priceInCents, age, inCart } = req.body;
   monsters.push({ id: monsters.length + 1, name, priceInCents, age, inCart });
   res.sendStatus(201);

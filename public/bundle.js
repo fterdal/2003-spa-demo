@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./client/createMonster.js":
+/*!*********************************!*\
+  !*** ./client/createMonster.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const createMonster = async newMonster => {\n  const { name, priceInCents } = newMonster;\n  const response = await window.fetch(\"/api/monsters\", {\n    method: \"POST\",\n    headers: {\n      'Content-Type': 'application/json'\n    },\n    body: JSON.stringify({ name, priceInCents })\n  });\n  console.log(\"RESPONSE AFTER POST\", response)\n};\n\nmodule.exports = createMonster;\n\n\n//# sourceURL=webpack:///./client/createMonster.js?");
+
+/***/ }),
+
 /***/ "./client/loadMonsters.js":
 /*!********************************!*\
   !*** ./client/loadMonsters.js ***!
@@ -93,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const loadMonsters = async () => {\n  const response = await window.fetch(\"/api/monsters\");\n  const monsters = await response.json();\n  console.log(\"monsters\", monsters);\n  return monsters;\n};\n\nmodule.exports = loadMonsters;\n\n\n//# sourceURL=webpack:///./client/loadMonsters.js?");
+eval("const loadMonsters = async () => {\n  const response = await window.fetch(\"/api/monsters\");\n  const monsters = await response.json();\n  console.log(\"MONSTERS AFTER GET\", monsters);\n  return monsters;\n};\n\nmodule.exports = loadMonsters;\n\n\n//# sourceURL=webpack:///./client/loadMonsters.js?");
 
 /***/ }),
 
@@ -104,7 +115,7 @@ eval("const loadMonsters = async () => {\n  const response = await window.fetch(
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const loadMonsters = __webpack_require__(/*! ./loadMonsters */ \"./client/loadMonsters.js\");\nconst { formatDollars } = __webpack_require__(/*! ./utils */ \"./client/utils.js\");\n\nconst monsterContainer = document.getElementById(\"monster-container\");\nconst refreshMonstersBtn = document.getElementById(\"refresh-monsters\");\n\nasync function renderMonsters() {\n  const monsters = await loadMonsters();\n\n  monsterContainer.innerHTML = \"\";\n  monsters.forEach(monster => {\n    const monsterBox = document.createElement(\"DIV\");\n    monsterBox.classList.add(\"monster-box\");\n    if (monster.inCart) {\n      monsterBox.classList.add(\"in-cart\");\n    }\n    monsterBox.innerHTML = `\n    <h2>${monster.name}</h2>\n    <img src=\"https://robohash.org/${monster.name}?set=set2\">\n    <div>${formatDollars(monster.priceInCents)} / hour</div>\n    `;\n    monsterContainer.appendChild(monsterBox);\n  });\n}\n\nrefreshMonstersBtn.onclick = renderMonsters;\n\nrenderMonsters();\n\n\n//# sourceURL=webpack:///./client/main.js?");
+eval("const loadMonsters = __webpack_require__(/*! ./loadMonsters */ \"./client/loadMonsters.js\");\nconst createMonster = __webpack_require__(/*! ./createMonster */ \"./client/createMonster.js\");\nconst { formatDollars } = __webpack_require__(/*! ./utils */ \"./client/utils.js\");\n\nconst monsterContainer = document.getElementById(\"monster-container\");\nconst refreshMonstersBtn = document.getElementById(\"refresh-monsters\");\nconst createMonsterForm = document.getElementById(\"new-monster-form\");\n\nasync function renderMonsters() {\n  const monsters = await loadMonsters();\n\n  monsterContainer.innerHTML = \"\";\n  monsters.forEach(monster => {\n    const monsterBox = document.createElement(\"DIV\");\n    monsterBox.classList.add(\"monster-box\");\n    monsterBox.innerHTML = `\n    <h2>${monster.name}</h2>\n    <img src=\"https://robohash.org/${monster.name}?set=set2\">\n    <div>${formatDollars(monster.priceInCents)} / hour</div>\n    `;\n    monsterContainer.appendChild(monsterBox);\n  });\n}\n\nasync function handleFormSubmit(event) {\n  event.preventDefault();\n  const name = event.target.querySelector('input[name=\"name\"]').value;\n  const priceInCents = event.target.querySelector('input[name=\"price\"]').value;\n  await createMonster({ name, priceInCents });\n}\n\nrefreshMonstersBtn.onclick = renderMonsters;\ncreateMonsterForm.onsubmit = handleFormSubmit;\n\nrenderMonsters();\n\n\n//# sourceURL=webpack:///./client/main.js?");
 
 /***/ }),
 
